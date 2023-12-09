@@ -1,6 +1,7 @@
 import math
 from copy import deepcopy
 import time
+import UsefulFunctions
 
 start = time.time()
 X = []
