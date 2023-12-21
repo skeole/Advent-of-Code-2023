@@ -60,6 +60,14 @@ def combine_maps(map_one_array, map_two_array): # format of maps: initial, final
     
     '''
     
+    for j in range(len(map_one_array) - 1, 0, -1):
+        if map_one_array[j][0] - map_one_array[j - 1][1] != 1:
+            map_one_array.insert(j, [map_one_array[j - 1][1] + 1, map_one_array[j][0] - 1, 0])
+    
+    for j in range(len(map_two_array) - 1, 0, -1):
+        if map_two_array[j][0] - map_two_array[j - 1][1] != 1:
+            map_two_array.insert(j, [map_two_array[j - 1][1] + 1, map_two_array[j][0] - 1, 0])
+    
     zone_read = []
     for i in map_two_array:
         zone_read.append([i[0], i[2]])
@@ -69,6 +77,10 @@ def combine_maps(map_one_array, map_two_array): # format of maps: initial, final
     for i in map_one_array:
         first_inversion.append([i[0] + i[2], i[1] + i[2], -i[2]])
     first_inversion = UsefulFunctions.sortarraysonfunction(first_inversion, funky_function)[0]
+    
+    for j in range(len(first_inversion) - 1, 0, -1):
+        if first_inversion[j][0] - first_inversion[j - 1][1] != 1:
+            first_inversion.insert(j, [first_inversion[j - 1][1] + 1, first_inversion[j][0] - 1, 0])
     
     variable_two = []
     for i in first_inversion:
@@ -101,7 +113,6 @@ def combine_maps(map_one_array, map_two_array): # format of maps: initial, final
         
         if not upper < lower:
             combined_mapping.append([lower + first_contribution, upper + first_contribution, second_contribution - first_contribution])
-    
         
     combined_mapping = UsefulFunctions.sortarraysonfunction(combined_mapping, funky_function)[0]
     return combined_mapping
@@ -135,7 +146,7 @@ for i in range(int(len(r) / 2)):
 
 acceptable_range = UsefulFunctions.sortarraysonfunction(acceptable_range, funky_function)[0]
 
-minimum = 99999999999999999
+minimum = 1000000000000000
 
 for i in combined_map:
     for j in acceptable_range:

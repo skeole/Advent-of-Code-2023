@@ -55,3 +55,14 @@ def sortarraysonfunction(list_of_arrays, function): # ex. function can be to ret
     for i in list_of_arrays:
         new_array.append(function(i))
     return sortarraysonvalues(list_of_arrays, new_array)
+
+def choose(n, r):
+    prod = 1
+    for i in range(n, n - r, -1):
+        prod *= i
+    for i in range(1, r + 1):
+        prod /= i
+    return round(prod)
+
+capitalphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+lowercases = "abcdefghijklmnopqrstuvwxyz"
