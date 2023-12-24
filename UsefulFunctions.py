@@ -64,5 +64,11 @@ def choose(n, r):
         prod /= i
     return round(prod)
 
+def binary_insert(list, element, comparison): # list must already be ordered
+    pass
+
+def binary_search(list, element, comparison): # list must be ordered
+    pass
+
 capitalphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 lowercases = "abcdefghijklmnopqrstuvwxyz"
