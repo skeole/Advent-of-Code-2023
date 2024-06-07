@@ -111,4 +111,4 @@ for i in X:
     counts += solve(i[0], i[1])
 
 print("Part Two Answer: " + str(counts))
-print("Part Two Runtime : " + str(int((time.time() - start) * 100 + 0.5) / 100)) # takes around 6 seconds :(
+print("Part Two Runtime : " + str(int((time.time() - start) * 100 + 0.5) / 100)) # takes around 4 seconds :)

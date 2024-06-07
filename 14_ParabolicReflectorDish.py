@@ -87,4 +87,4 @@ while X not in cache:
     iter(3)
 
 print("Part Two Answer: " + str(calculate_load(cache[cache.index(X) + (1000000000 - cache.index(X)) % (len(cache) - cache.index(X))])))
-print("Part Two Runtime : " + str(int((time.time() - start) * 100 + 0.5) / 100))
+print("Part Two Runtime : " + str(int((time.time() - start) * 100 + 0.5) / 100)) # 1 second

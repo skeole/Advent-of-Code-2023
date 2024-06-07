@@ -7,6 +7,21 @@ def printarray(arr):
             t += j
         print(t)
 
+def printarraynumbers(arr):
+    maxlen = 0
+    for i in arr:
+        for j in i:
+            if len((str(j))) > maxlen:
+                maxlen = len((str(j)))
+    maxlen += 1
+    for i in arr:
+        t = ""
+        for j in i:
+            t += str(j)
+            for k in range(maxlen - len(str(j))):
+                t += " "
+        print(t)
+
 def combine(first, pivot, second): # should go in form of [[arrays], [values]]
     combined_list = [[], []]
     for i in first[0]:
@@ -72,3 +87,12 @@ def binary_search(list, element, comparison): # list must be ordered
 
 capitalphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 lowercases = "abcdefghijklmnopqrstuvwxyz"
+ASCII_MINUS_32 = " !\"#$%&\'()*+,-./0123456789:;<=>?@" + capitalphabet + "[\\]^_`" + lowercases + "{|}~"
+
+def to_ascii(character):
+    return 32 + ASCII_MINUS_32.index(character)
+
+def get(array, row, column, default_value=0):
+    if row < 0 or column < 0 or row > len(array) - 1 or column > len(array[0]) - 1:
+        return default_value
+    return array[row][column]
