@@ -71,11 +71,11 @@ def calculate(position=[0, 0], direction=0, reset=True): # 0 = Right, 1 = Down, 
             pos[0] -= 1
     
     count = 0
-    for i in empty_grid:
-        for j in i:
-            if j != 1:
-                count += 1
-    
+    if (reset):
+        for i in empty_grid:
+            for j in i:
+                if j != 1:
+                    count += 1
     return count
     
 print("Part One Answer: " + str(calculate()))
@@ -121,4 +121,4 @@ for i in range(len(X[0])):
     ))
 
 print("Part Two Answer: " + str(maximum))
-print("Part Two Runtime : " + str(int((time.time() - start) * 100 + 0.5) / 100)) # takes around 30 seconds
+print("Part Two Runtime : " + str(int((time.time() - start) * 100 + 0.5) / 100)) # takes around 4 seconds

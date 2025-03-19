@@ -96,3 +96,30 @@ def get(array, row, column, default_value=0):
     if row < 0 or column < 0 or row > len(array) - 1 or column > len(array[0]) - 1:
         return default_value
     return array[row][column]
+
+def two_d_vector_add(vec_one, vec_two):
+    return [vec_one[0] + vec_two[0], vec_one[1] + vec_two[1]]
+
+def two_d_vector_multiply_scalar(vec_one, scalar):
+    return [vec_one[0] * scalar, vec_one[1] * scalar]
+
+def two_d_vector_rotate_counterclockwise(vector, number_of_nineties):
+    if number_of_nineties % 4 == 1:
+        return [-vector[1], vector[0]]
+    elif number_of_nineties % 4 == 2:
+        return [-vector[0], -vector[1]]
+    elif number_of_nineties % 4 == 3:
+        return [vector[1], -vector[0]]
+    else:
+        return [vector[0], vector[1]]
+
+def works(array, vector_row_column):
+    if vector_row_column[0] < 0 or vector_row_column[1] < 0 or vector_row_column[0] > len(array) - 1 or vector_row_column[1] > len(array[0]) - 1:
+        return False
+    return True
+
+def access(array, vector_row_column):
+    return array[vector_row_column[0]][vector_row_column[1]]
+
+def modify(array, vector_row_column, new_value):
+    array[vector_row_column[0]][vector_row_column[1]] = new_value

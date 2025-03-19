@@ -29,26 +29,39 @@ for line in file:
         C[1][i] = int(C[1][i])
     X.append(C)
 
-caches = []
+base = 0
 cached_scores = []
+maximum_length = 0
 
 def solve(hotspring, code, reset_cache = True):
-    global caches, cached_scores
-    if (reset_cache):
-        caches = [] # dew it without caching first
-        cached_scores = []
-    
+    global cached_scores, base, maximum_length
+    if (reset_cache): # we have to start by resetting the cache, obviously
+        cached_scores = [-1] * (len(hotspring) + 1) * (len(code) + 1)
+        # ex if hotspring is 12, code is 3 --> can have 52
+        # hotspring of 1, code of 0 -> 4
+        # hotspring of 12, code of 3 -> 51
+        base = len(code) + 1
+        maximum_length = 0
+        for i in range(len(hotspring) - 1, -1, -1):
+            if hotspring[i] == "#":
+                break
+            else:
+                maximum_length += 1
+        # can have up to len(hotspring) * len(code)
+
+    cache_index = base * len(hotspring) + len(code)
+
     if len(code) == 0: # don't need to cache anything here
-        for i in hotspring:
-            if i == "#":
-                return 0
-        return 1
+        if len(hotspring) > maximum_length:
+            return 0
+        else:
+            return 1
     
     if len(hotspring) == 0: # don't need to cache anything here
         return 0
-    
-    if [code, hotspring] in caches:
-        return cached_scores[caches.index([code, hotspring])]
+
+    if cached_scores[cache_index] != -1:
+        return cached_scores[cache_index]
     
     # what happens if we do start the next run here
     run_length = code[0]
@@ -81,8 +94,7 @@ def solve(hotspring, code, reset_cache = True):
     if false_works:
         false_val = solve(hotspring_if_false, code_if_false, reset_cache = False)
     
-    caches.append([code, hotspring])
-    cached_scores.append(true_val + false_val)
+    cached_scores[cache_index] = true_val + false_val
     return true_val + false_val
 
 counts = 0
@@ -111,4 +123,4 @@ for i in X:
     counts += solve(i[0], i[1])
 
 print("Part Two Answer: " + str(counts))
-print("Part Two Runtime : " + str(int((time.time() - start) * 100 + 0.5) / 100)) # takes around 4 seconds :)
+print("Part Two Runtime : " + str(int((time.time() - start) * 100 + 0.5) / 100)) # takes around .4 seconds :)
